@@ -51,8 +51,12 @@ plugins:
   jellyfin_api:
     enabled: false
     list_ids:
-      - minCriticRating: ["9"]
-        limit: ["3"]
-        sortBy: ["Random"]
-        includeItemTypes: ["Movie"]
-      - genres: ["Mystery"]
+      - name: "Random top-rated movies"
+        query_params:
+          minCriticRating: ["9"]
+          limit: ["5"]
+          sortBy: ["Random"]
+          includeItemTypes: ["Movie"]
+      - name: "Genre: Mystery"
+        query_params:
+          genres: ["Mystery"]

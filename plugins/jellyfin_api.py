@@ -18,7 +18,8 @@ class JellyfinAPI(ListScraper):
             "Recursive": "true",
             "fields": ["ProviderIds", "ProductionYear"]
         }
-        params = {**params, **list_id}
+        listName = list_id['name']
+        params = {**params, **list_id['query_params']}
 
         res = requests.get(f'{config["server_url"]}/Users/{config["user_id"]}/Items',headers={"X-Emby-Token": config["api_key"]}, params=params)
 
@@ -32,7 +33,7 @@ class JellyfinAPI(ListScraper):
             })
 
         return {
-            "name": f"{list_id}",
+            "name": f"{listName}",
             "description": "Movies which match the jellyfin API query: {list_id}",
             "items": items
         }
